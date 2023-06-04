@@ -12,7 +12,7 @@
 function fn(){}
 ```
 
-![image-20230401160332850](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230401160332850.png)
+![image-20230401160332850](.\images\JS\1685881682067.jpg)
 
 可以看到fn的prototype属性中有constructor属性，可以将其看作指针，它指向的是fn这个函数。
 
@@ -57,11 +57,7 @@ let fn = new Fn()
 console.log(fn.__proto__ === Fn.prototype)//结果为true
 ```
 
-![image-20230401161816468](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230401161816468.png)
-
 此时fn就可以通过**______proto__**获取Fn的**prototype**原型上的所有属性。
-
-
 
 ## 原型链
 
@@ -87,7 +83,7 @@ console.log(Object.prototype.__proto__)//null
 
 综上整个过程，即为原型链。
 
-![image-20230401193449120](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230401193449120.png)
+![image-20230401193449120](.\images\JS\1685882910590.jpg)
 
 ## Function、Object、function
 
@@ -105,11 +101,168 @@ console.log(Function.prototype.__proto__ === Object.prototype)//true
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ff422e52ff0f49df80984d36ee01c719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81NjUwNTg0NQ==,size_16,color_FFFFFF,t_70#pic_center)
 
+## 继承
+
+### 原型链继承
+
+将**父类的实例**赋给**子类的原型**，这样子类就可以获得父类的属性和方法，以及原型上的属性和方法。
+
+```js
+    //组合继承
+    function Person(){
+        this.name = 'person';
+        this.friends = ['a','b','c'];
+        this.get = ()=>{
+            console.log("我是Person");
+        }
+    }
+    Person.prototype.say = function(){
+        console.log("我是Person的原型");
+    }
+    function Student(){}
+    Student.prototype = new Person();
+
+    let stu1 = new Student();
+    console.log(stu1.name);
+    stu1.get();
+    stu1.say();
+    console.log(stu1.friends);
+    console.log(stu1);
+
+    let stu2 = new Student();
+    stu2.friends.push("d");
+    console.log(stu2.friends);
+```
+
+优点：
+
+1. 可以继承父类及其原型的属性和方法
+
+缺点：
+
+1. **所有子类共享**，一旦一个子类修改了父类的属性或方法，其他子类也会改变
+
+### 构造函数继承
+
+在子类中通过call或apply改变父类的this指向，调用父类。
+
+```js
+    //构造函数继承
+    function Person(){
+        this.name = 'person';
+        this.friends = ['a','b','c'];
+        this.get = ()=>{
+            console.log("我是Person");
+        }
+    }
+    Person.prototype.say = function(){
+        console.log("我是Person的原型");
+    }
+    function Student(){
+        Person.call(this)
+    }
+    let stu = new Student()
+    console.log(stu.name);
+    console.log(stu.friends);
+    stu.get();
+    console.log(stu);
+    stu.say();
+```
+
+![](.\images\JS\1685881577293.jpg)
+
+优点：
+
+1. 解决了原型链继承的缺点，每个子类继承的都是独一无二的父类，互不影响
+
+缺点：
+
+1. **无法继承父类原型链上的属性和方法**，相当于在子类里**调用了父类函数**，给子类添加了父类的属性和方法
+2. 无法复用
+
+### 组合继承
+
+使用原型链继承和构造函数继承
+
+```js
+    function Person(){
+        this.name = 'person';
+        this.friends = ['a','b','c'];
+        this.get = ()=>{
+            console.log("我是Person");
+        }
+    }
+    Person.prototype.say = function(){
+        console.log("我是Person的原型");
+    }
+    function Student(){
+        Person.call(this)
+    }
+    Student.prototype = new Person();
+    let stu = new Student();
+    console.log(stu.name);
+    console.log(stu.friends);
+    stu.get();
+    stu.say();
+    console.log(stu);
+```
+
+![](.\images\JS\1685882113459.jpg)
+
+优点
+
+1. 解决了构造函数继承无法继承父类原型的问题，且子类继承的属性都是独立的，互不影响
+
+缺点
+
+1. 会**执行两次父类的构造函数**，消耗较大内存
+
+### 寄生组合式继承
+
+利用一个新的函数Fn，将父类的实例赋给函数Fn的原型，然后子类中用call调用父类，并将Fn的实例赋给子类的原型
+
+```js
+    function Person(){
+        this.name = 'person';
+        this.friends = ['a','b','c'];
+        this.get = ()=>{
+            console.log("我是Person");
+        }
+    }
+    Person.prototype.say = function(){
+        console.log("我是Person的原型");
+    }
+    function Fn(){};
+    Fn.prototype = new Person();
+    function Student(){
+        Person.call(this);
+    }
+    Student.prototype = new Fn();
+    let stu = new Student();
+    console.log(stu.name);
+    console.log(stu.friends);
+    stu.get();
+    stu.say();
+    console.log(stu);
+```
+
+![](.\images\JS\1685882731931.jpg)
+
 # 闭包
 
+本质就是内部函数引用的外部函数的变量或方法。
+
+优点
+
+1. 可以实现变量私有化，可以让变量不受污染
+
+缺点
+
+1. 可能**造成内存泄漏**
+
+## 柯里化函数
+
 # Promise
-
-
 
 ## then
 
