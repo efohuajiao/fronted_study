@@ -1,5 +1,105 @@
 # 函数中的this
 
+this就是一个指针变量，**动态指向当前函数的运行环境**
+
+### 全局环境下的this
+
+​	全局作用域下，**this永远指向window**。
+
+### 普通函数中的this
+
+1. 谁调用this就指向谁，没有调用，this就指向window
+
+2. 严格模式下，必须写上函数的调用者，不能省略或简写。全局中this的调用者是window。因此要写window.fn()。
+
+### 对象中的this
+
+对象内部方法的this指向调用这些方法的对象，也就是**谁调用就指向谁**
+
+
+```js
+var obj = {
+    name:"张三",
+    age:18,
+    sayName:function(){
+        console.log("my name is "+this.name);
+    },
+    obj:{
+        name:"李四",
+        age:20,
+        sayName:function(){
+            console.log("my name is "+this.name);
+        }
+    }
+}
+obj.sayName();//张三。obj调用了sayName，所以此时this指向obj。
+obj.obj.sayName();//李四。说明内部方法的this指向离被调用函数最近的对象。printChinese离grade对象近，所以this指向grade对象。
+```
+
+### 箭头函数中的this
+
+箭头函数没有自己的this，它的this**在函数被定义时就已经被绑定**，指向函数所在作用域的外部作用域。
+
+```js
+var obj = {
+	
+}
+```
+
+### 构造函数中的this
+
+构造函数中的this永远指向被创建的实例对象。如果构造函数中**设置了具有对象的返回值**，那么该对象就是new表达式的结果；如果返回值不是对象，则new表达式的结果为构造函数的实例对象。
+
+```js
+function Fun(name,age){
+	this.name = name;
+	this.age = age;
+	this.sayName = function(){
+		console.log(this)
+	}
+}
+let fun = new Fun("张三",18);
+fun.sayName();//fun
+function Fun1(a){
+    this.a = a;
+    return {a:18,name:"李四"};
+}
+let fun1 = new Fun1(17);
+console.log(fun1);//{a:18,name:"李四"},这里的fun1是构造函数返回的对象	
+console.log(fun1.a);//18
+```
+
+![image-20230402201900053](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230402201900053.png)
+
+### 特殊
+
+1. 定时器中的this
+
+​		定时器中的回调为普通函数时，其中的this永远指向window，即全局环境。
+
+​		若为箭头函数时，它的this指向上一层的对象。
+
+```js
+var obj={
+    name:"张三",
+    fun3:function(){
+        setTimeout(function(){
+        	console.log(this)
+        },100)
+    },
+        fun4:function (){
+        setTimeout(()=>{
+        	console.log(this)
+        },100)
+    }
+}
+
+obj.fun3();//window
+obj.fun4()//obj
+```
+
+![image-20230402202451062](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230402202451062.png)
+
 
 
 # 原型和原型链
