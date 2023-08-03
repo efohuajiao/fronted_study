@@ -69,7 +69,7 @@ console.log(fun1);//{a:18,name:"李四"},这里的fun1是构造函数返回的�
 console.log(fun1.a);//18
 ```
 
-![image-20230402201900053](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230402201900053.png)
+![image-20230402201900053](http://cdn.t-terminal.icu/image-20230402201900053.png)
 
 ### 特殊
 
@@ -98,7 +98,7 @@ obj.fun3();//window
 obj.fun4()//obj
 ```
 
-![image-20230402202451062](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230402202451062.png)
+![image-20230402202451062](http://cdn.t-terminal.icu/image-20230402202451062.png)
 
 
 
@@ -112,7 +112,7 @@ obj.fun4()//obj
 function fn(){}
 ```
 
-![image-20230401160332850](.\images\JS\1685881682067.jpg)
+![image-20230401160332850](http://cdn.t-terminal.icu/1685881682067.jpg)
 
 可以看到fn的prototype属性中有constructor属性，可以将其看作指针，它指向的是fn这个函数。
 
@@ -183,7 +183,7 @@ console.log(Object.prototype.__proto__)//null
 
 综上整个过程，即为原型链。
 
-![image-20230401193449120](.\images\JS\1685882910590.jpg)
+![image-20230401193449120](http://cdn.t-terminal.icu/1685882910590.jpg)
 
 ## Function、Object、function
 
@@ -199,7 +199,7 @@ console.log(Function.__proto__ === Function.prototype)//true
 console.log(Function.prototype.__proto__ === Object.prototype)//true
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ff422e52ff0f49df80984d36ee01c719.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81NjUwNTg0NQ==,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](http://cdn.t-terminal.icu/ff422e52ff0f49df80984d36ee01c719.jpg)
 
 ## 继承
 
@@ -269,7 +269,7 @@ console.log(Function.prototype.__proto__ === Object.prototype)//true
     stu.say();
 ```
 
-![](.\images\JS\1685881577293.jpg)
+![](http://cdn.t-terminal.icu/1685881577293.jpg)
 
 优点：
 
@@ -307,7 +307,7 @@ console.log(Function.prototype.__proto__ === Object.prototype)//true
     console.log(stu);
 ```
 
-![](.\images\JS\1685882113459.jpg)
+![](http://cdn.t-terminal.icu/1685882113459.jpg)
 
 优点
 
@@ -346,7 +346,7 @@ console.log(Function.prototype.__proto__ === Object.prototype)//true
     console.log(stu);
 ```
 
-![](.\images\JS\1685882731931.jpg)
+![](http://cdn.t-terminal.icu/1685882731931.jpg)
 
 # 闭包
 
@@ -361,6 +361,25 @@ console.log(Function.prototype.__proto__ === Object.prototype)//true
 1. 可能**造成内存泄漏**
 
 ## 柯里化函数
+
+**每传递一个参数调用函数，就返回一个新函数处理剩余的参数**
+
+柯里化的概念：**接收一个函数**fn，**返回另一个函数**curried，当curried中的**参数少于**fn时，它会**返回另一个函数暂存之前的参数**，直到**参数个数等于fn接收的参数个数时返回结果**。
+
+```js
+function curry(fn){
+    return function curried(...args){ // 柯里化函数返回一个新的函数
+        if(args.length < fn.length){ // 如果调用返回的函数的参数少于fn本身的参数时,进入递归
+            return function(){
+                return curried(...args.concat(Array.from(arguments)));
+            }
+        }
+        return fn(...args);
+    }
+}
+```
+
+
 
 # Promise
 
@@ -388,7 +407,7 @@ const p2 = p1.then( value => {
 console.log(p2);
 ```
 
-![image-20230518193023372](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230518193023372.png)
+![image-20230518193023372](http://cdn.t-terminal.icu/image-20230518193023372.png)
 
 **如果then中有返回值**
 

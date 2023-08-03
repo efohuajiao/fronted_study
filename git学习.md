@@ -56,41 +56,41 @@ $\textcolor{red}{注意:}$这里设置用户签名和将来登录GitHub的账号
 
 使用`git status`即可查看本地库状态。
 
-![image-20230527142451296](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527142451296.png)
+![image-20230527142451296](http://cdn.t-terminal.icu/image-20230527142451296.png)
 
 untracked files代表没有添加到暂存区的文件，git并没有追踪到，可以使用`git add 文件名`添加到暂存区。
 
-![image-20230527142704028](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527142704028.png)
+![image-20230527142704028](http://cdn.t-terminal.icu/image-20230527142704028.png)
 
 ### 将文件从暂存区中删除
 
 `git rm --cached 文件名`即可把文件从暂存区中删除。**只是从暂存区中删除，工作区中并没有删除。**
 
-![image-20230527143312843](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527143312843.png)
+![image-20230527143312843](http://cdn.t-terminal.icu/image-20230527143312843.png)
 
 ### 提交到本地库
 
 `git commit -m "日志信息"`即可将文件添加到本地库。
 
-![image-20230527143542405](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527143542405.png)
+![image-20230527143542405](http://cdn.t-terminal.icu/image-20230527143542405.png)
 
 使用`git reflog`可以查看提交信息。其中**fde23bf**就是本次提交的版本信息。
 
-![image-20230527143611304](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527143611304.png)
+![image-20230527143611304](http://cdn.t-terminal.icu/image-20230527143611304.png)
 
 `git log`不仅可以看到提交信息，也可以看到提交者。
 
-![image-20230527143656927](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527143656927.png)
+![image-20230527143656927](http://cdn.t-terminal.icu/image-20230527143656927.png)
 
 ### 修改文件
 
 如果文件在**提交到本地库后经过修改**，使用`git status`查看本地库状态时会显示修改后的文件，本地库状态会提示修改的文件。
 
-![image-20230527144150500](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527144150500.png)
+![image-20230527144150500](http://cdn.t-terminal.icu/image-20230527144150500.png)
 
 这时就需要重新提交修改的文件到本地库，然后本地库就的版本就会指向最新的提交版本。
 
-![image-20230527144305126](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527144305126.png)
+![image-20230527144305126](http://cdn.t-terminal.icu/image-20230527144305126.png)
 
 ### 历史版本
 
@@ -105,11 +105,11 @@ untracked files代表没有添加到暂存区的文件，git并没有追踪到�
 1. 通过`git reflog`查看版本号
 2. 使用`git reset --hard 版本号`即可跳转到对应的版本，文件也会回退到对应的版本。
 
-![image-20230527145412428](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527145412428.png)
+![image-20230527145412428](http://cdn.t-terminal.icu/image-20230527145412428.png)
 
 **git切换版本，底层其实是移动的HEAD指针**。
 
-![image-20230527145529361](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527145529361.png)
+![image-20230527145529361](http://cdn.t-terminal.icu/image-20230527145529361.png)
 
 ### 分支
 
@@ -124,7 +124,7 @@ untracked files代表没有添加到暂存区的文件，git并没有追踪到�
 | git checkout 分支名 | 切换分支                     |
 | git merge 分支名    | 把指定的分支合并到当前分支上 |
 
-![image-20230527151536894](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527151536894.png)
+![image-20230527151536894](http://cdn.t-terminal.icu/image-20230527151536894.png)
 
 图中后面蓝色括号里的表示**当前分支**。
 
@@ -132,11 +132,11 @@ untracked files代表没有添加到暂存区的文件，git并没有追踪到�
 
 hot-fix分支下的hello.txt文件。
 
-<img src="C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527151917828.png" alt="image-20230527151917828" />
+<img src="http://cdn.t-terminal.icu/image-20230527151917828.png" alt="image-20230527151917828" />
 
 master分支下的hello.txt文件。
 
-![image-20230527152045684](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527152045684.png)
+![image-20230527152045684](http://cdn.t-terminal.icu/image-20230527152045684.png)
 
 #### 合并分支
 
@@ -144,21 +144,21 @@ master分支下的hello.txt文件。
 
 `git merge 分支名`
 
-![image-20230527152314777](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527152314777.png)
+![image-20230527152314777](http://cdn.t-terminal.icu/image-20230527152314777.png)
 
 #### 合并冲突
 
 合并分支时，两个分支，在同一个文件的同一个位置有两套完全不同的修改。Git无法替我们决定使用哪一个，必须认为决定新代码内容。
 
-![image-20230527153641423](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527153641423.png)
+![image-20230527153641423](http://cdn.t-terminal.icu/image-20230527153641423.png)
 
 这时就要人为修改文件，决定文件的内容。
 
-![image-20230527153729528](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527153729528.png)
+![image-20230527153729528](http://cdn.t-terminal.icu/image-20230527153729528.png)
 
-![image-20230527153807711](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527153807711.png)
+![image-20230527153807711](http://cdn.t-terminal.icu/image-20230527153807711.png)
 
-![image-20230527153833430](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527153833430.png)
+![image-20230527153833430](http://cdn.t-terminal.icu/image-20230527153833430.png)
 
 ## 远程仓库操作（github为例）
 
@@ -179,13 +179,13 @@ master分支下的hello.txt文件。
 
 查看别名：`git remote -v`
 
-![image-20230527155943429](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527155943429.png)
+![image-20230527155943429](http://cdn.t-terminal.icu/image-20230527155943429.png)
 
 ### 将本地库代码推送到远程库
 
 `git push 别名 分支`
 
-![image-20230527165708273](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527165708273.png)
+![image-20230527165708273](http://cdn.t-terminal.icu/image-20230527165708273.png)
 
 ### 将远程库代码下载到本地库
 
@@ -207,13 +207,11 @@ master分支下的hello.txt文件。
 
 需要添加成员后，成员才能对代码进行推送。
 
-![1685178605975](D:\WeChat Files\WeChat Files\wxid_n4dks6t38n3b22\FileStorage\Temp\1685178605975.jpg)
+![image-20230527171101146](http://cdn.t-terminal.icu/image-20230527171101146.png)
 
-![image-20230527171101146](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527171101146.png)
+![image-20230527171122873](http://cdn.t-terminal.icu/image-20230527171122873.png)
 
-![image-20230527171122873](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527171122873.png)
-
-![image-20230527171156033](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527171156033.png)
+![image-20230527171156033](http://cdn.t-terminal.icu/image-20230527171156033.png)
 
 将随后生成的链接发给对方，**对方同意后**即可加入创作团队，进行代码推送。
 
@@ -225,20 +223,20 @@ master分支下的hello.txt文件。
 
 2. 在C盘用户目录下的.ssh文件夹中即可看到公钥和私钥。
 
-![image-20230527172728606](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527172728606.png)
+![image-20230527172728606](http://cdn.t-terminal.icu/image-20230527172728606.png)
 
 **.pub是公钥，复制公钥，在github中添加公钥。**
 
-![image-20230527172850431](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527172850431.png)
+![image-20230527172850431](http://cdn.t-terminal.icu/image-20230527172850431.png)
 
 
 
-![image-20230527172914098](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527172914098.png)
+![image-20230527172914098](http://cdn.t-terminal.icu/image-20230527172914098.png)
 
-![image-20230527172949732](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527172949732.png)
+![image-20230527172949732](http://cdn.t-terminal.icu/image-20230527172949732.png)
 
-![image-20230527173053059](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527173053059.png)
+![image-20230527173053059](http://cdn.t-terminal.icu/image-20230527173053059.png)
 
 3. 随后即可**通过SSH进行代码的拉取、推送等操作**
 
-![image-20230527173129010](C:\Users\Redmi\AppData\Roaming\Typora\typora-user-images\image-20230527173129010.png)
+![image-20230527173129010](http://cdn.t-terminal.icu/image-20230527173129010.png)
